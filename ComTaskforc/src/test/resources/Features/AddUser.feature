@@ -13,7 +13,7 @@ Feature: Feature to test Add users functionality
     When User clicks on user icon
     Then User gets user management screen
     And User clicks on Add user button
-   When user fills the form with <email>,<password>,<firstname>,<lastname>, Role and Status
+   When user fills the form with "<email>","<password>","<firstname>","<lastname>", Role and Status
     And User clicks on send invite button
     Then User gets added to Active user
 

@@ -78,7 +78,7 @@ public class AddUser {
 		Home =new HomePage(driver);
 		System.out.println("user is on management screen");
 	}
-	@When ("User fills the form with (.*),(.*),(.*),(.*), Role and Status as active")
+	@When ("user fills the form with {string},{string},{string},{string}, Role and Status")
 	public void fill_form(String email,String password,String firstname, String lastname) throws InterruptedException 
 	{
 		Home =new HomePage(driver);
