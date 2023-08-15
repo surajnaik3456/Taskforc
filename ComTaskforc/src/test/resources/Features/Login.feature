@@ -13,22 +13,22 @@ Feature: Feature to test login funtionality
 @Second 
   Scenario Outline: Login with invalid Email Id and valid password
     Given user is on login page
-    When user enters invalid <EmailId> and valid <password>
+    When user enters invalid <email> and valid <password>
     And click on log in button
     Then the user should see an error message indicating Email is invalid
 
     Examples: 
-      | EmailId      | password |
+      | email     | password |
       | may@yopmail | Abcd@123 |
 @Third
   Scenario Outline: Login with valid Email Id and invalid password
     Given user is on login page
-    When user enters valid <Email Id> and invalid <password>
+    When user enters valid <email> and invalid <password>
     And click on log in button
     Then the user should see an error message indicating Password complexity requirement
 
     Examples: 
-      | Email Id        | password |
+      | email        | password |
       | may@yopmail.com | Abcd     |
 @Four
   Scenario Outline: Login with empty username and password fields

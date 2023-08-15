@@ -1,6 +1,8 @@
 package StepDefinitions;
 
 import java.time.Duration;
+
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -17,8 +19,8 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 public class AddUser {
 	WebDriver driver = null;
 	LoginPage login;
-	HomePage Home;
-	
+	HomePage home;
+
 	@Before
 	public void browserSetup()
 	{
@@ -34,11 +36,11 @@ public class AddUser {
 	@After
 	public void tearDown()
 	{
-		System.out.println("Browser closed");
 		driver.close();
 		driver.quit();
+		System.out.println("Browser closed");
 	}
-	@Given("User is on homepage")
+	@Given("user is on homepage")
 	public void user_is_on_home_page() throws InterruptedException
 	{
 		driver.get("https://qa.taskforc.com");
@@ -49,59 +51,61 @@ public class AddUser {
 		login.clickLogin();
 		Thread.sleep(2000);
 	}
-	@When("User clicks on user icon")
-	public void Click_user_icon() throws InterruptedException
+	@When("user clicks on user icon")
+	public void clickUserIcon() throws InterruptedException
 	{
-		Home = new HomePage(driver);
-		Home.Usericon_click();
+		home = new HomePage(driver);
+		home.userIconClick();
 		Thread.sleep(2000);
 	}
-	@And("User clicks on Add user button")
-	public void click_add_user() throws InterruptedException
+	@And("user clicks on Add user button")
+	public void clickAddUser() throws InterruptedException
 	{
-		Home =new HomePage(driver);
+		home =new HomePage(driver);
 		Thread.sleep(2000);
-		Home.ClickAdduser();
+		home.clickAddUser();
 		Thread.sleep(2000);
 	}
-	@Then("User gets Add user screen")
-	public void Add_user_screen() throws InterruptedException
+	@Then("user gets Add user screen")
+	public void addUserScreen() throws InterruptedException
 	{
-		Home =new HomePage(driver);
+		home =new HomePage(driver);
 		Thread.sleep(2000);
-		Home.AddUserScreen_displayed();
+		home.addUserScreenDisplayed();
 		System.out.println("Screen displayed");
 	}
-	@Then ("User gets user management screen")
-	public void management_Screen()
+	@Then ("user gets user management screen")
+	public void managementScreen()
 	{
-		Home =new HomePage(driver);
+		home =new HomePage(driver);
 		System.out.println("user is on management screen");
 	}
 	@When ("user fills the form with {string},{string},{string},{string}, Role and Status")
-	public void fill_form(String email,String password,String firstname, String lastname) throws InterruptedException 
+	public void fillForm(String email,String password,String firstname, String lastname) throws InterruptedException 
 	{
-		Home =new HomePage(driver);
+		home =new HomePage(driver);
 		Thread.sleep(2000);
-		Home.EmailEnt(email);
-		Home.PwdEnt(password);
-		Home.EnterFirstName(firstname);
-		Home.EnterLastName(lastname);
+		home.emailEnt(email);
+		home.pwdEnt(password);
+		home.enterFirstName(firstname);
+		home.enterFirstName(lastname);
 		Thread.sleep(2000);
-		Home.ProjManagRole();
+		home.projManagRole();
 		Thread.sleep(2000);
-		Home.Activestatus();	
+		home.activeStatus();	
 		Thread.sleep(2000);
 	}
-	@And ("User clicks on send invite button")
-	public void Click_invite()
+	@And ("user clicks on send invite button")
+	public void clickInvite() throws InterruptedException
 	{
-		Home =new HomePage(driver);
-		Home.Click_invite();
+		home =new HomePage(driver);
+		home.clickInvite();
+		Thread.sleep(2000);
 	}
-	@Then ("User gets added to Active user")
-	public void user_added()
+	@Then ("user gets added to Active user")
+	public void userAdded() throws InterruptedException
 	{
-		System.out.println("User Added");
+		Thread.sleep(2000);	
+		driver.findElement(By.xpath("//*[text()='User Management']")).isDisplayed();
 	}
 }

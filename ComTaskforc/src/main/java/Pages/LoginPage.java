@@ -13,18 +13,18 @@ By email_err_msg = By.xpath("//div[@class='invalid-feedback d-flex']");
 By pwd_err_msg = By.xpath("//body/div[@id='root']/div[1]/div[3]/div[1]/div[1]/form[1]/div[1]/div[2]/div[2]");
 By blank_email = By.xpath("//body/div[@id='root']/div[1]/div[3]/div[1]/div[1]/form[1]/div[1]/div[1]/div[1]");
 By blank_pwd = By.xpath("//body/div[@id='root']/div[1]/div[3]/div[1]/div[1]/form[1]/div[1]/div[2]/div[2]");
-By logOut = By.xpath("//body/div[@id='root']/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/a[1]/div[1]/*[1]");
+By logout = By.xpath("//body/div[@id='root']/div[1]/div[1]/div[1]/div[1]/div[2]/div[1]/a[1]/div[1]/*[1]");
 By login_page = By.tagName("img");
-By welcom_page = By.xpath("//*[text()='Welcome back!']");
+By welcome_page = By.xpath("//*[text()='Welcome back!']");
 
 public LoginPage(WebDriver driver)
 {
 	this.driver =driver;
 }
 
-public void enterEmailId(String Email)
+public void enterEmailId(String email)
 {
-driver.findElement(email_id).sendKeys(Email);
+driver.findElement(email_id).sendKeys(email);
 }
 public void enterPassword(String password)
 {
@@ -46,7 +46,7 @@ public void invalidPassword()
 {
 driver.findElement(pwd_err_msg).isDisplayed();
 }
-public void blankEmailfield()
+public void blankEmailField()
 {
 driver.findElement(blank_email).getText();
 }
@@ -56,7 +56,7 @@ driver.findElement(blank_pwd).getText();
 }
 public void logout()
 {
-driver.findElement(logOut).click();
+driver.findElement(logout).click();
 }
 public void homePage()
 {
@@ -70,8 +70,8 @@ public void loginPg()
 {
 driver.findElement(login_page).isDisplayed();
 }
-public void welcome_Pg()
+public void welcomePg()
 {
-driver.findElement(welcom_page).isDisplayed();
+driver.findElement(welcome_page).isDisplayed();
 }
 }

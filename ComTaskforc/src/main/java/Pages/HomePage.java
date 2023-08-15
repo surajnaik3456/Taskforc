@@ -1,77 +1,91 @@
 package Pages;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.Select;
 
 public class HomePage {
 	WebDriver driver;
-	By AddUser = By.xpath("//body/div[@id='root']/div[1]/div[1]/div[2]/div[2]/div[1]/div[4]/button[1]");
-	By FirstName = By.xpath("//input[@id='first_name']");
-	By LastName = By.id("last_name");
-	By EnterEmail = By.id("email");
-	By EnterPassword = By.id("password");
-	By Role = By.xpath("//*[text()='Select Role'][1]");
-	By Status = By.xpath("//body/div[5]/div[1]/div[1]/div[2]/form[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/div[2]");
-	By Adduserscreen = By.xpath("//div[@xpath=1]");
-	By Adduserbtn = By.xpath("//body/div[@id='root']/div[1]/div[1]/div[2]/div[2]/div[1]/div[4]/button[1]");
-    By Usericon = By.xpath("//body/div[@id='root']/div[1]/div[1]/div[1]/div[1]/div[2]/a[4]/div[1]/*[1]");
-    By Sendinvite = By.xpath("//button[@class='apply-button']");
+	By add_user = By.xpath("//body/div[@id='root']/div[1]/div[1]/div[2]/div[2]/div[1]/div[4]/button[1]");
+	By first_name = By.xpath("//input[@id='first_name']");
+	By last_name = By.id("last_name");
+	By enter_email = By.id("email");
+	By enter_password = By.id("password");
+	By role = By.xpath("/html/body/div[3]/div/div/div[2]/form/div/div[2]/div[1]/div[2]/div/div/div[1]/div[2]");
+	By status = By.xpath("//body/div[5]/div[1]/div[1]/div[2]/form[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/div[2]");
+	By add_user_screen = By.xpath("//div[@xpath=1]");
+	By add_user_btn = By.xpath("//body/div[@id='root']/div[1]/div[1]/div[2]/div[2]/div[1]/div[4]/button[1]");
+    By user_icon = By.xpath("//body/div[@id='root']/div[1]/div[1]/div[1]/div[1]/div[2]/a[4]/div[1]/*[1]");
+    By send_invite = By.xpath("//button[@class='apply-button']");
 
 	public HomePage(WebDriver driver)
 	{
 		this.driver =driver;
 	}
-	public void ClickAdduser()
+	public void clickAddUser()
 	{
-		driver.findElement(AddUser).click();
+		driver.findElement(add_user).click();
 	}
-	public void AddUserScreen_displayed()
+	public void addUserScreenDisplayed()
 	{
-		driver.findElement(Adduserscreen).isDisplayed();
+		driver.findElement(add_user_screen).isDisplayed();
 	}
 	
-	public void EnterFirstName(String firstname)
+	public void enterFirstName(String firstname)
 	{
-		driver.findElement(FirstName).sendKeys(firstname);
+		driver.findElement(first_name).sendKeys(firstname);
 	}
-	public void EnterLastName(String lastname)
+	public void enterLastName(String lastname)
 	{
-		driver.findElement(LastName).sendKeys(lastname);
+		driver.findElement(last_name).sendKeys(lastname);
 	}
-	public void EmailEnt(String email)
+	public void emailEnt(String email)
 	{
-	driver.findElement(EnterEmail).sendKeys(email);	
+	driver.findElement(enter_email).sendKeys(email);	
 	}
-	public void PwdEnt(String password)
+	public void pwdEnt(String password)
 	{
-	driver.findElement(EnterPassword).sendKeys(password);
+	driver.findElement(enter_password).sendKeys(password);
 	}
-	public void Usericon_click()
+	public void userIconClick()
 	{
-	driver.findElement(Usericon).click();
+	driver.findElement(user_icon).click();
 	}
-	public void Adduser_click()
+	public void addUserClick()
 	{
-	driver.findElement(Adduserbtn).click();
+	driver.findElement(add_user_btn).click();
 	}
-	public void ProjManagRole()
+	public void projManagRole() throws InterruptedException
 	{
-		WebElement role = driver.findElement(By.xpath("//body/div[3]/div[1]/div[1]/div[2]/form[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[1]/div[2]/div[1]"));
-		Select dropdown = new Select(role);
-		dropdown.selectByVisibleText("Project Manager"+Keys.ENTER);
+		WebElement dropdown = driver.findElement(By.xpath("/html/body/div[3]/div/div/div[2]/form/div/div[2]/div[1]/div[2]/div/div/div[1]/div[2]"));
+		dropdown.click();
+		List<WebElement>option = driver.findElements(By.xpath("/html[1]/body[1]/div[3]/div[1]/div[1]/div[2]/form[1]/div[1]/div[2]/div[1]/div[2]/div[1]/div[2]/div[1]/div[3]"));
+		Thread.sleep(2000);
+		for(WebElement obj: option)
+		{
+			obj.getText().equals("Project Manager");
+			obj.click();
+			
+		}
 	}
-	public void Activestatus()
+	public void activeStatus() throws InterruptedException
 	{
-		WebElement status = driver.findElement(Status);
-		Select dropdown = new Select(status);
-		dropdown.selectByVisibleText("Active"+Keys.ENTER);
+		WebElement status = driver.findElement(By.xpath("//body/div[3]/div[1]/div[1]/div[2]/form[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/div[2]"));
+		status.click();
+		List<WebElement>active = driver.findElements(By.xpath("/html[1]/body[1]/div[3]/div[1]/div[1]/div[2]/form[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[2]/div[1]/div[1]"));
+		Thread.sleep(2000);
+		for(WebElement st: active)
+		{
+			st.getText().equals("Active");
+			st.click();
+			
+		}
 	}
-	public void Click_invite()
+	public void clickInvite()
 	{
-		driver.findElement(Sendinvite).click();
+		driver.findElement(send_invite).click();
 	}
 	
 }
