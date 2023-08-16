@@ -5,7 +5,7 @@ import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(features="src/test/resources/Features",glue= {"StepDefinitions"},
-tags= "@Homepage",
+tags= "@DeleteUser",
 monochrome = true,
 plugin = {"json:target/cucumber.json"}
 )
