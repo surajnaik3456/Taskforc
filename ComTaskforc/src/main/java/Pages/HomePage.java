@@ -5,9 +5,11 @@ import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HomePage {
 	WebDriver driver;
+	WebDriverWait wait;
 	By add_user = By.xpath("//body/div[@id='root']/div[1]/div[1]/div[2]/div[2]/div[1]/div[4]/button[1]");
 	By first_name = By.xpath("//input[@id='first_name']");
 	By last_name = By.id("last_name");
@@ -24,12 +26,17 @@ public class HomePage {
 	By click_delete_user = By.xpath("//a[@class='dropdown-item'][3]");
 	By delete_user_screen = By.xpath("//div[@class='d-flex justify-content-center']");
 	By delete_button_click = By.xpath("//button[@class='delete-btn']");
-	By user_deleted_check = By.xpath("//*[text()='test_4_13_08_2023@yopmail.com']");
+	By user_deleted_check = By.xpath("//*[text()='test_1_04_08_2023@yopmail.com']");
 
 	public HomePage(WebDriver driver)
 	{
 		this.driver =driver;
 	}
+	public HomePage(WebDriverWait wait)
+	{
+		this.wait =wait;
+	}
+	
 	public void clickAddUser()
 	{
 		driver.findElement(add_user).click();

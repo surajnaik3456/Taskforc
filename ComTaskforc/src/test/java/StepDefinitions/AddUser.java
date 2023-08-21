@@ -1,48 +1,23 @@
 package StepDefinitions;
 
-import java.time.Duration;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-
 import Pages.HomePage;
 import Pages.LoginPage;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
+import TestBase.TestBase;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class AddUser {
-	WebDriver driver = null;
+
+public class AddUser extends TestBase {
 	LoginPage login;
 	HomePage home;
 
-	@Before
-	public void browserSetup()
-	{
-		System.out.println("I'm inside browsersetup");
-		WebDriverManager.chromedriver().setup(); 
-		driver =new ChromeDriver();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		driver.manage().timeouts().scriptTimeout(Duration.ofMinutes(2));
-		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-		driver.manage().window().maximize();
-	}
-
-	@After
-	public void tearDown()
-	{
-		driver.close();
-		driver.quit();
-		System.out.println("Browser closed");
-	}
 	@Given("user is on homepage")
 	public void user_is_on_home_page() throws InterruptedException
 	{
+		
 		driver.get("https://qa.taskforc.com");
 		login =new LoginPage(driver);
 		Thread.sleep(2000);

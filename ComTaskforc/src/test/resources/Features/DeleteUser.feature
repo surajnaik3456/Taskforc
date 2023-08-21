@@ -15,4 +15,4 @@ Feature: Feature to test Delete users functionality
 
     Examples: 
       | email                         |
-      | test_4_13_08_2023@yopmail.com |
+      | test_1_04_08_2023@yopmail.com |

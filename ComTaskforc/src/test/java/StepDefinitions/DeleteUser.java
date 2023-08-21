@@ -1,43 +1,16 @@
 package StepDefinitions;
 
-import java.time.Duration;
-
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-
 import Pages.HomePage;
 import Pages.LoginPage;
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
+import TestBase.TestBase;
 import io.cucumber.java.en.*;
-import io.github.bonigarcia.wdm.WebDriverManager;
 
-public class DeleteUser {
-	WebDriver driver = null;
+public class DeleteUser extends TestBase {
 	LoginPage login;
 	HomePage home;
 	
-	@Before
-	public void browserSetup()
-	{
-		System.out.println("I'm inside browsersetup");
-		WebDriverManager.chromedriver().setup(); 
-		driver =new ChromeDriver();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-		driver.manage().timeouts().scriptTimeout(Duration.ofMinutes(2));
-		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-		driver.manage().window().maximize();
-	}
 
-	@After
-	public void tearDown()
-	{
-		driver.close();
-		driver.quit();
-		System.out.println("Browser closed");
-	}
-	
-	@And("user clicks on ellipsis menu for the {String} user")
+	@And("user clicks on ellipsis menu for the {string} user")
 	public void clickOnEllipsisMenu(String email) throws InterruptedException
 	{
 	    home = new HomePage(driver);
@@ -81,5 +54,7 @@ public class DeleteUser {
 		home = new HomePage(driver);
 		Thread.sleep(2000);
 		home.checkUserDeleted();
+		Thread.sleep(2000);
+
 	}
 }
