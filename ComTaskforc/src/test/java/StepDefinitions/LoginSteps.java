@@ -17,7 +17,7 @@ public class LoginSteps extends TestBase
 
 {
 	LoginPage login;
-	WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(10));
+	WebDriverWait wait = new WebDriverWait(driver,Duration.ofSeconds(20));
 
 	@Given("user is on login page")
 	public void userIsOnLoginPage()

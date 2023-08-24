@@ -1,6 +1,12 @@
 package StepDefinitions;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import Pages.HomePage;
 import Pages.LoginPage;
 import TestBase.TestBase;
@@ -13,41 +19,43 @@ import io.cucumber.java.en.When;
 public class AddUser extends TestBase {
 	LoginPage login;
 	HomePage home;
-
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+    
 	@Given("user is on homepage")
-	public void user_is_on_home_page() throws InterruptedException
+	public void user_is_on_home_page() 
 	{
 		
 		driver.get("https://qa.taskforc.com");
 		login =new LoginPage(driver);
-		Thread.sleep(2000);
+	    wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='login-main-row'][3]")));
 		login.enterEmailId("may@yopmail.com");
 		login.enterPassword("Abcd@123");
 		login.clickLogin();
-		Thread.sleep(2000);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.tagName("img")));
 	}
 	@When("user clicks on user icon")
-	public void clickUserIcon() throws InterruptedException
+	public void clickUserIcon() 
 	{
 		home = new HomePage(driver);
-		home.userIconClick();
-		Thread.sleep(2000);
+		WebElement userIcon= wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//body/div[@id='root']/div[1]/div[1]/div[1]/div[1]/div[2]/a[4]/div[1]/*[1]")));
+		userIcon.click();
+		System.out.println("user clicked on user icon");
 	}
 	@And("user clicks on Add user button")
-	public void clickAddUser() throws InterruptedException
+	public void clickAddUser() 
 	{
 		home =new HomePage(driver);
-		Thread.sleep(2000);
-		home.clickAddUser();
-		Thread.sleep(2000);
+		WebElement clickAddUser= wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[text()='Add User']")));
+		clickAddUser.click();
+		System.out.println("user clicked on Add user button");
 	}
 	@Then("user gets Add user screen")
-	public void addUserScreen() throws InterruptedException
+	public void addUserScreen() 
 	{
 		home =new HomePage(driver);
-		Thread.sleep(2000);
-		home.addUserScreenDisplayed();
-		System.out.println("Screen displayed");
+		WebElement addUserScreen = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[@class ='modal-header']")));
+		addUserScreen.isDisplayed();
+		System.out.println("Add User Screen displayed");
 	}
 	@Then ("user gets user management screen")
 	public void managementScreen()
@@ -59,28 +67,27 @@ public class AddUser extends TestBase {
 	public void fillForm(String email,String password,String firstname, String lastname) throws InterruptedException 
 	{
 		home =new HomePage(driver);
-		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//div[@class='col-md'][1]")));
 		home.emailEnt(email);
 		home.pwdEnt(password);
 		home.enterFirstName(firstname);
-		home.enterFirstName(lastname);
-		Thread.sleep(2000);
+		home.enterLastName(lastname);
 		home.projManagRole();
-		Thread.sleep(2000);
 		home.activeStatus();	
-		Thread.sleep(2000);
+		System.out.println("Form filled..");
 	}
 	@And ("user clicks on send invite button")
-	public void clickInvite() throws InterruptedException
+	public void clickInvite() 
 	{
 		home =new HomePage(driver);
-		home.clickInvite();
-		Thread.sleep(2000);
+		WebElement clickableElement = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[@class='apply-button']")));
+		clickableElement.click();
 	}
 	@Then ("user gets added to Active user")
-	public void userAdded() throws InterruptedException
-	{
-		Thread.sleep(2000);	
-		driver.findElement(By.xpath("//*[text()='User Management']")).isDisplayed();
+	public void userAdded() 
+	{	
+		driver.findElement(By.xpath("//*[text()='test02_13_08_2023@yopmail.com']")).isDisplayed();
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[text()='test02_13_08_2023@yopmail.com']")));
+		System.out.println("User is added..");
 	}
 }

@@ -1,7 +1,6 @@
 @DeleteUser
 Feature: Feature to test Delete users functionality
 
-  @tag1
   Scenario Outline: Test the user is getting deleted
     Given user is on homepage
     When user clicks on user icon
@@ -15,4 +14,4 @@ Feature: Feature to test Delete users functionality
 
     Examples: 
       | email                         |
-      | test_1_04_08_2023@yopmail.com |
+      | test02_13_08_2023@yopmail.com |

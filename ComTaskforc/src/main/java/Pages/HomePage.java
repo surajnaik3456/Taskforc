@@ -17,7 +17,7 @@ public class HomePage {
 	By enter_password = By.id("password");
 	By role = By.xpath("/html/body/div[3]/div/div/div[2]/form/div/div[2]/div[1]/div[2]/div/div/div[1]/div[2]");
 	By status = By.xpath("//body/div[5]/div[1]/div[1]/div[2]/form[1]/div[1]/div[2]/div[2]/div[2]/div[1]/div[1]/div[1]/div[2]");
-	By add_user_screen = By.xpath("//div[@xpath=1]");
+	By add_user_screen = By.xpath("//div[@class='modal-header']");
 	By add_user_btn = By.xpath("//body/div[@id='root']/div[1]/div[1]/div[2]/div[2]/div[1]/div[4]/button[1]");
 	By user_icon = By.xpath("//body/div[@id='root']/div[1]/div[1]/div[1]/div[1]/div[2]/a[4]/div[1]/*[1]");
 	By send_invite = By.xpath("//button[@class='apply-button']");
@@ -26,7 +26,7 @@ public class HomePage {
 	By click_delete_user = By.xpath("//a[@class='dropdown-item'][3]");
 	By delete_user_screen = By.xpath("//div[@class='d-flex justify-content-center']");
 	By delete_button_click = By.xpath("//button[@class='delete-btn']");
-	By user_deleted_check = By.xpath("//*[text()='test_1_04_08_2023@yopmail.com']");
+	By user_deleted_check = By.xpath("//*[contains(text(),'test02_13_08_2023@yopmail.com')]");
 
 	public HomePage(WebDriver driver)
 	{
@@ -36,7 +36,7 @@ public class HomePage {
 	{
 		this.wait =wait;
 	}
-	
+
 	public void clickAddUser()
 	{
 		driver.findElement(add_user).click();
@@ -111,7 +111,7 @@ public class HomePage {
 	}
 	public void clickDelete()
 	{
-		driver.findElement(click_delete_user).click();;
+		driver.findElement(click_delete_user).click();
 	}
 	public void deleteUserScreen()
 	{
@@ -121,9 +121,5 @@ public class HomePage {
 	{
 		driver.findElement(delete_button_click).click();
 	}
-	public void checkUserDeleted()
-	{
-		driver.findElement(user_deleted_check).isDisplayed();
-
-	}
 }
+

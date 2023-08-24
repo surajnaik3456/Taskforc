@@ -1,13 +1,14 @@
-@Adduser
+@AddUser
 Feature: Feature to test Add users functionality
 
+  @AddUserScreen
   Scenario: 
     Given user is on homepage
     When user clicks on user icon
     And user clicks on Add user button
     Then user gets Add user screen
 
-  @Homepage
+  @UserAdded
   Scenario Outline: 
     Given user is on homepage
     When user clicks on user icon
@@ -19,4 +20,4 @@ Feature: Feature to test Add users functionality
 
     Examples: 
       | email                         | password | firstname | lastname |
-      | test_4_13_08_2023@yopmail.com | Abcd@124 | Test      | four     |
+      | test02_13_08_2023@yopmail.com | Abcd@124 | Test      | two      |
